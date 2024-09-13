@@ -1,4 +1,4 @@
-E-Commerce Website
+# E-Commerce Website
 An e-commerce platform built using Node.js and Express.js that allows users to browse products, add items to their cart, and checkout. The admin can manage products and view orders.
 Features
 User Authentication: Register, login, and logout functionality.
