@@ -3,7 +3,7 @@ const express = require('express');
 
 
 // Declaring necessary variables.
-const PORT = 3000;
+const PORT = 4000;
 const app = express();
 
 const errorControllers = require('./controllers/error')
@@ -13,6 +13,10 @@ const mongoConnect = require('./utils/database').mongoConnect;
 // Setting the ejs engine
 app.set('view engine', 'ejs');
 app.set('views', 'views')
+
+//setting the pug(jade) template engine
+// app.set('view engine', 'pug');
+// app.set('views', 'views')
 
 //Requiring the routes from the routes folder
 const adminRoutes = require('./routes/admin')
@@ -28,18 +32,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.use((res, req, next) => {
+    // user.findById(1)
+    // .then (user => {
+    //     req.user = user;
+    //     next();
+    // })
+    // .catch (err => {
+    //     console.log(err);
+    // })
     next();
 })
+ 
 
 //Routes
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 // 404 page
+
 app.use(errorControllers.get404);
 
 mongoConnect(()=>{
-    app.listen(3000);
+    console.log(client)
+    const db = getDb();
+    app.listen(4000);
 })
 
 
