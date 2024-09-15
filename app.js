@@ -14,10 +14,6 @@ const mongoConnect = require('./utils/database').mongoConnect;
 app.set('view engine', 'ejs');
 app.set('views', 'views')
 
-//setting the pug(jade) template engine
-// app.set('view engine', 'pug');
-// app.set('views', 'views')
-
 //Requiring the routes from the routes folder
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop');
@@ -53,8 +49,6 @@ app.use(shopRoutes);
 app.use(errorControllers.get404);
 
 mongoConnect(()=>{
-    console.log(client)
-    const db = getDb();
     app.listen(4000);
 })
 
