@@ -31,13 +31,17 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll(products => {
+  Product.fetchAll()
+  .then(products => {
     res.render('shop/index', {
       Products: products,
       pageTitle: 'Shop',
       path: '/'
     });
-  });
+  })
+  .catch(err => {
+    console.log(err);
+  })
 };
 
 exports.getCart = (req, res, next) => {
