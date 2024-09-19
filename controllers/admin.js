@@ -1,3 +1,4 @@
+const mongodb = require('mongodb');
 const Product = require('../models/products');
 
 exports.getAddProduct = (req, res, next) => {
@@ -61,3 +62,27 @@ exports.getEditProduct = (req, res, next) => {
     console.log(err)
   })
 };
+
+exports.postEditProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  const updatedProductName = req.body.ProductName;
+  const updatedImageUrl = req.body.imageUrl;
+  const updatedPrice = req.body.price;
+  const updatedDescription = req.body.description;
+  const updatedProduct = new Product(
+    updatedProductName,
+    updatedImageUrl, 
+    updatedPrice, 
+    updatedDescription, 
+    new mongodb.ObjectId(prodId)
+  );
+  updatedProduct
+  .save()
+  .then(result => {
+    console.log('Product Updated!');
+    res.redirect('/admin/products')
+  })
+  .catch(err => {
+    console.log(err)
+  })
+ }
