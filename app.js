@@ -49,7 +49,9 @@ app.use(shopRoutes);
 app.use(errorControllers.get404);
 
 mongoConnect(()=>{
-    app.listen(4000);
+    app.listen(PORT, () => {
+    console.log(`Server started on http://localhost:${PORT}`)
+})
 })
 
 
