@@ -11,7 +11,7 @@ class Product {
         const db = getDb();
         return db
           .collection('products')
-          .insertMany(this)
+          .insertOne(this)
           .then(result => {
             console.log(result);
           })
